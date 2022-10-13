@@ -1,0 +1,17 @@
+.configuration {
+    padding: 1rem;
+    border-top-left-radius: 0% !important;
+    border-top-right-radius: 0% !important;
+    height: 100% !important;
+    border-top: none !important;
+}
+.configuration-tabs {
+    margin-top: .25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+.colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
