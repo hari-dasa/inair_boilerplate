@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSettingsButton } from "@airtable/blocks/ui";
 import { useState } from "react";
-import Settings from "./Settings";
+import Settings, {capitalizePrototypeConfig} from "./Settings";
 import { CupStraw, PersonWorkspace } from "react-bootstrap-icons";
 import Header from "./Header";
 import './App.scss';
 import { globalConfig } from "@airtable/blocks";
 import useCustomColors from "./useCustomColors";
+import { SelectRecords } from "./Accessors";
+import { Tab, Tabs } from "react-bootstrap";
+import PokemonView from "./PokemonView";
 
 const App = () => {
 
@@ -14,6 +17,12 @@ const App = () => {
     const [isShowingSettings, setIsShowingSettings] = useState(false);
     useSettingsButton(function () {
         setIsShowingSettings(!isShowingSettings);
+    });
+
+    useEffect(() => {
+        capitalizePrototypeConfig();
+        // console.log(SelectRecords("Pokémon", "Name"));
+        
     });
 
     // Example of Bootstrap icons
@@ -26,10 +35,25 @@ const App = () => {
 
     return (
         <div className="container">
-            {isShowingSettings ? <Settings /> : <>
-                <Header title="Hello from InAir Studio!" icon={icons} />
-                <p>Let's build an app using React-Bootstrap!</p>
-            </>}
+            {isShowingSettings ? 
+                <Settings /> 
+            : 
+                <>
+                    <Header title="📕Airtable Pokédex - InAir Academy" icon={icons} />
+                    <p><></>Let's manage your pokedex database! </p>
+                    <Tabs defaultActiveKey="pokemon" className="tables-tabs">
+                        <Tab eventKey="pokemon" title="Pokemon Table">
+                            <PokemonView />
+                        </Tab>                        
+                        <Tab eventKey="types" title="Types Table">
+
+                        </Tab>                              
+                        <Tab eventKey="abilities" title="Abilities Table">
+
+                        </Tab>              
+                    </Tabs>
+                </>
+            }
         </div>
     );
 }

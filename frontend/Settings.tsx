@@ -22,6 +22,7 @@ const Settings = () => {
             root.style.setProperty('--backgroundColor', colorUtils.getHexForColor(backgroundColor))
         }
     }, [backgroundColor]);
+    
     const headerColor = globalConfig.get('headerColor') as string;
     useEffect(() => {
         const root = window.document.documentElement;
@@ -87,5 +88,15 @@ const Settings = () => {
         </>
     )
 }
+
+export function capitalizePrototypeConfig() {
+    Object.defineProperty(String.prototype, 'capitalize', {
+        value: function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        },
+        configurable: true,
+        enumerable: false
+    });
+};
 
 export default Settings;
