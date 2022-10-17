@@ -2,6 +2,7 @@ import {Button, expandRecordPickerAsync, FormField, RecordCardList, Box, useBase
 import React, { useEffect, useState } from 'react';
 import { Card, Tab } from 'react-bootstrap';
 import { Accessors } from './Accessors';
+import "./PokemonView.scss";
 // import { GetFields, GetRecords } from './Accessors';
 
 import PokemonTableDataHandle from './PokemonDataHandle';
@@ -36,15 +37,17 @@ class PokemonView extends React.Component {
     render(): React.ReactNode {
         return <>
                         <Card className="pokemon">
-                            <FormField label="Pokemons Functions" marginBottom={0}>
+                            <FormField  label=" Pokemons Duplicate " marginBottom={0}>
                                 <Button
-                                    onClick={() => this.setState({listRecords:true})}
+                                    icon="link"
+                                    className="pokemon-list-button"
+                                    onClick={() => this.setState({listRecords: !this.state.listRecords})}
                                 >
                                     Click to list the records and pick one to duplicate
                                 </Button>
                                 {
                                 this.state.listRecords?   
-                                            <Box height="300px" border="thick" backgroundColor="lightGray1">
+                                            <Box className='pokemon-list-box' height="350px" border="thick" backgroundColor="lightGray1">
                                                 <RecordCardList 
                                                     records={this.props.records} 
                                                     fields={this.props.fields}
