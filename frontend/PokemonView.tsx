@@ -65,12 +65,12 @@ class PokemonView extends React.Component {
 }
 
 export default () => {
-    const asc = new Accessors("Pokémon");
-    const records = asc.GetRecords();//tblEWHy8pqeEgZKUp
-    const fields  = asc.GetFields(["Name", "Sprites", "Generation"]);
+    const accessor = new Accessors("Pokémon");
+    const records = accessor.GetRecords();//tblEWHy8pqeEgZKUp
+    const fields  = accessor.GetFields(["Name", "Sprites", "Generation"]);
     const abilitiesRecords    =   (new Accessors("Abilities")).GetRecords();
     const typesRecords        =   (new Accessors("Types")).GetRecords();
 
-    return <PokemonView records={records} fields={fields} table={asc.table} abilitiesRecords={abilitiesRecords} typesRecords={typesRecords}/>;  
+    return <PokemonView records={records} fields={fields} table={accessor.table} abilitiesRecords={abilitiesRecords} typesRecords={typesRecords}/>;  
 } ;
 
